@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:poke_modular/constants/endpoints.dart';
-import 'package:poke_modular/models/result.dart';
-import '../models/pokemon.dart';
+import 'package:poke_modular/models/pokemon.dart';
+import 'package:poke_modular/models/pokemon_list.dart';
 
 class PokemonService {
   final Dio _dio = Dio();
@@ -15,19 +15,21 @@ class PokemonService {
     if (pokemonResponse.statusCode != 200) {
       throw Exception('error getting pokemon');
     }
+
     return Pokemon.fromJson(pokemonResponse.data);
   }
 
-  Future<List<Pokemon>> getPokemons() async {
+  Future<List<Pokemon>> getPokemons([String? nextPokemonsUrl]) async {
     final pokemonResponse = await _dio.get('');
 
     if (pokemonResponse.statusCode != 200) {
       throw Exception('error getting pokemon');
     }
-    return pokemonResponse.data['results']
-        .map<Result>((pokemon) => Pokemon.fromJson(pokemon))
-        .toList();
-  }
 
-  // getPokemon
+    final pokemonList = PokemonList.fromJson(pokemonResponse.data);
+
+    final pokemonFutures =
+        pokemonList.results.map((result) => getPokemon(result.name)).toList();
+    return Future.wait(pokemonFutures);
+  }
 }

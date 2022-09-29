@@ -120,7 +120,8 @@ class __$$_StatCopyWithImpl<$Res> extends _$StatCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_Stat implements _Stat {
   const _$_Stat(
       {required this.baseStat, required this.effort, required this.stat});

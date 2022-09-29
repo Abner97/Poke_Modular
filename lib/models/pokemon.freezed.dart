@@ -332,7 +332,8 @@ class __$$_PokemonCopyWithImpl<$Res> extends _$PokemonCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_Pokemon implements _Pokemon {
   const _$_Pokemon(
       {required final List<Ability> abilities,

@@ -112,7 +112,8 @@ class __$$_GameIndexCopyWithImpl<$Res> extends _$GameIndexCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_GameIndex implements _GameIndex {
   const _$_GameIndex({required this.gameIndex, required this.version});
 

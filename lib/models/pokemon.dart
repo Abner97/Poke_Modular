@@ -5,12 +5,13 @@ import 'package:poke_modular/models/move.dart';
 import 'package:poke_modular/models/more_info.dart';
 import 'package:poke_modular/models/sprites.dart';
 import 'package:poke_modular/models/stat.dart';
-
+import 'package:poke_modular/models/type.dart';
 part 'pokemon.freezed.dart';
+part 'pokemon.g.dart';
 
 @freezed
-@JsonSerializable(explicitToJson: true)
 class Pokemon with _$Pokemon {
+  @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
   const factory Pokemon({
     required List<Ability> abilities,
     required int baseExperience,

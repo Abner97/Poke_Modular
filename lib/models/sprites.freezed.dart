@@ -28,7 +28,7 @@ mixin _$Sprites {
   dynamic get frontFemale => throw _privateConstructorUsedError;
   String get frontShiny => throw _privateConstructorUsedError;
   dynamic get frontShinyFemale => throw _privateConstructorUsedError;
-  Sprites get animated => throw _privateConstructorUsedError;
+  Sprites? get animated => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,9 +48,9 @@ abstract class $SpritesCopyWith<$Res> {
       dynamic frontFemale,
       String frontShiny,
       dynamic frontShinyFemale,
-      Sprites animated});
+      Sprites? animated});
 
-  $SpritesCopyWith<$Res> get animated;
+  $SpritesCopyWith<$Res>? get animated;
 }
 
 /// @nodoc
@@ -109,13 +109,17 @@ class _$SpritesCopyWithImpl<$Res> implements $SpritesCopyWith<$Res> {
       animated: animated == freezed
           ? _value.animated
           : animated // ignore: cast_nullable_to_non_nullable
-              as Sprites,
+              as Sprites?,
     ));
   }
 
   @override
-  $SpritesCopyWith<$Res> get animated {
-    return $SpritesCopyWith<$Res>(_value.animated, (value) {
+  $SpritesCopyWith<$Res>? get animated {
+    if (_value.animated == null) {
+      return null;
+    }
+
+    return $SpritesCopyWith<$Res>(_value.animated!, (value) {
       return _then(_value.copyWith(animated: value));
     });
   }
@@ -136,10 +140,10 @@ abstract class _$$_SpritesCopyWith<$Res> implements $SpritesCopyWith<$Res> {
       dynamic frontFemale,
       String frontShiny,
       dynamic frontShinyFemale,
-      Sprites animated});
+      Sprites? animated});
 
   @override
-  $SpritesCopyWith<$Res> get animated;
+  $SpritesCopyWith<$Res>? get animated;
 }
 
 /// @nodoc
@@ -199,13 +203,14 @@ class __$$_SpritesCopyWithImpl<$Res> extends _$SpritesCopyWithImpl<$Res>
       animated: animated == freezed
           ? _value.animated
           : animated // ignore: cast_nullable_to_non_nullable
-              as Sprites,
+              as Sprites?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_Sprites implements _Sprites {
   const _$_Sprites(
       {required this.backDefault,
@@ -216,7 +221,7 @@ class _$_Sprites implements _Sprites {
       required this.frontFemale,
       required this.frontShiny,
       required this.frontShinyFemale,
-      required this.animated});
+      this.animated});
 
   factory _$_Sprites.fromJson(Map<String, dynamic> json) =>
       _$$_SpritesFromJson(json);
@@ -238,7 +243,7 @@ class _$_Sprites implements _Sprites {
   @override
   final dynamic frontShinyFemale;
   @override
-  final Sprites animated;
+  final Sprites? animated;
 
   @override
   String toString() {
@@ -305,7 +310,7 @@ abstract class _Sprites implements Sprites {
       required final dynamic frontFemale,
       required final String frontShiny,
       required final dynamic frontShinyFemale,
-      required final Sprites animated}) = _$_Sprites;
+      final Sprites? animated}) = _$_Sprites;
 
   factory _Sprites.fromJson(Map<String, dynamic> json) = _$_Sprites.fromJson;
 
@@ -326,7 +331,7 @@ abstract class _Sprites implements Sprites {
   @override
   dynamic get frontShinyFemale;
   @override
-  Sprites get animated;
+  Sprites? get animated;
   @override
   @JsonKey(ignore: true)
   _$$_SpritesCopyWith<_$_Sprites> get copyWith =>

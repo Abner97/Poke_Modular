@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:poke_modular/models/more_info.dart';
 part 'type.freezed.dart';
+part 'type.g.dart';
 
 @freezed
 class Type with _$Type {

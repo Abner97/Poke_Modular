@@ -110,7 +110,8 @@ class __$$_MoveCopyWithImpl<$Res> extends _$MoveCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_Move implements _Move {
   const _$_Move(
       {required this.move,

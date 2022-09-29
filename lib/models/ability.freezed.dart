@@ -121,7 +121,8 @@ class __$$_AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_Ability implements _Ability {
   const _$_Ability(
       {required this.ability, required this.isHidden, required this.slot});

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:poke_modular/widgets/pokemon-details.dart';
 
-class PokemonPage extends StatefulWidget {
-  const PokemonPage({super.key});
+class PokemonPage extends StatelessWidget {
+  const PokemonPage({
+    required this.imgUrl,
+    super.key,
+  });
+  final String imgUrl;
 
-  @override
-  State<PokemonPage> createState() => _PokemonPageState();
-}
-
-class _PokemonPageState extends State<PokemonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pokemon'),
       ),
-      body: Container(),
+      body: PokemonDetails(),
     );
   }
 }

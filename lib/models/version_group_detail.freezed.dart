@@ -139,7 +139,8 @@ class __$$_VersionGroupDetailCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_VersionGroupDetail implements _VersionGroupDetail {
   const _$_VersionGroupDetail(
       {required this.levelLearnedAt,

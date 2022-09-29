@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'more_info.freezed.dart';
+part 'more_info.g.dart';
 
 @freezed
 class MoreInfo with _$MoreInfo {

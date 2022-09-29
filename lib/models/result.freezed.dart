@@ -97,7 +97,8 @@ class __$$_ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Result implements _Result {
   _$_Result({required this.name, required this.url});
 
