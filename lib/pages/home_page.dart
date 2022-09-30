@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poke_modular/cubit/pokemon.cubit.dart';
 import 'package:poke_modular/models/pokemon.dart';
-import 'package:poke_modular/services/pokemon_service.dart';
 import 'package:poke_modular/widgets/pokemon_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,35 +12,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Pokemon> _pokemons = [];
-  final pokemonService = PokemonService();
+  List<Pokemon> pokemons = [];
   @override
   void initState() {
-    _getPokemons();
     super.initState();
+    _getPokemons(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pokemon List'),
-      ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: _pokemons.map((pokemon) {
-          return PokemonContainer(
-            imgUrl: pokemon.sprites.frontDefault,
-          );
-        }).toList(),
-      ),
+    return BlocConsumer<PokemonCubit, PokemonState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          loaded: (pokemonList) {
+            pokemons = pokemonList;
+          },
+          orElse: () {},
+        );
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: DecoratedBox(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/pokedex_cover.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: pokemons.map((pokemon) {
+                return PokemonContainer(
+                  pokemon: pokemon,
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
     );
   }
 
-  Future<void> _getPokemons() async {
-    final pokemons = await pokemonService.getPokemons();
-    setState(() {
-      _pokemons = pokemons;
-    });
+  Future<void> _getPokemons(BuildContext context) async {
+    context.read<PokemonCubit>().loadPokemons();
   }
 }

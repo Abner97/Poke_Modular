@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poke_modular/cubit/pokemon.cubit.dart';
 import 'package:poke_modular/pages/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider<PokemonCubit>(
+    create: (context) => PokemonCubit(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,9 +28,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
