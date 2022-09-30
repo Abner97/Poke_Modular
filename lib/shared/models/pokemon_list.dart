@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poke_modular/models/result.dart';
+import 'package:poke_modular/shared/models/result.dart';
 
 part 'pokemon_list.freezed.dart';
 part 'pokemon_list.g.dart';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poke_modular/cubit/pokemon.cubit.dart';
-import 'package:poke_modular/models/pokemon.dart';
-import 'package:poke_modular/pages/pokemon_page.dart';
-import 'package:poke_modular/widgets/pokemon_image.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poke_modular/core/cubit/pokemon.cubit.dart';
+import 'package:poke_modular/features/pokemon/services/pokemo_data.service.dart';
+import 'package:poke_modular/shared/models/pokemon.dart';
+import 'package:poke_modular/features/pokemon/pages/pokemon_page.dart';
+import 'package:poke_modular/shared/widgets/pokemon_image.dart';
 
 class PokemonContainer extends StatelessWidget {
   final Pokemon pokemon;
@@ -13,10 +15,13 @@ class PokemonContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<PokemonCubit>().loadPokemon(pokemon);
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const PokemonPage()),
-        );
+        Modular.get<PokemonCubit>().loadPokemon(pokemon);
+        Modular.get<PokemonData>().setMoves = pokemon.moves;
+        Modular.get<PokemonData>().setSprites = pokemon.sprites;
+        Modular.to.pushNamed("/pokemon/moves");
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) => const PokemonPage()),
+        // );
       },
       child: Container(
         margin: const EdgeInsets.all(10),
@@ -35,7 +40,10 @@ class PokemonContainer extends StatelessWidget {
             ),
           ],
         ),
-        child: PokemonImage(imgUrl: pokemon.sprites.frontDefault),
+        child: PokemonImage(
+          imgUrl: pokemon.sprites.frontDefault,
+          hero: true,
+        ),
       ),
     );
   }

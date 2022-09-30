@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poke_modular/cubit/pokemon.cubit.dart';
-import 'package:poke_modular/models/pokemon.dart';
-import 'package:poke_modular/widgets/pokemon_container.dart';
+import 'package:poke_modular/core/cubit/pokemon.cubit.dart';
+import 'package:poke_modular/shared/models/pokemon.dart';
+import 'package:poke_modular/features/home/widgets/pokemon_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poke_modular/models/more_info.dart';
+import 'package:poke_modular/shared/models/more_info.dart';
 part 'version_group_detail.freezed.dart';
 part 'version_group_detail.g.dart';
 

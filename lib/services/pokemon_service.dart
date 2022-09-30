@@ -1,16 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:poke_modular/constants/endpoints.dart';
-import 'package:poke_modular/models/pokemon.dart';
-import 'package:poke_modular/models/pokemon_list.dart';
+import 'package:poke_modular/shared/models/move.dart';
+import 'package:poke_modular/shared/models/pokemon.dart';
+import 'package:poke_modular/shared/models/pokemon_list.dart';
+import 'package:poke_modular/shared/models/sprites.dart';
 
 class PokemonService {
-  final Dio _dio = Dio();
-  PokemonService() {
-    _dio.options.baseUrl = ApiConstants.BASE_URL;
+  final Dio dio;
+
+  PokemonService({required this.dio}) {
+    dio.options.baseUrl = ApiConstants.BASE_URL;
   }
 
   Future<Pokemon> getPokemon(String pokemonName) async {
-    final pokemonResponse = await _dio.get('/$pokemonName');
+    final pokemonResponse = await dio.get('/$pokemonName');
 
     if (pokemonResponse.statusCode != 200) {
       throw Exception('error getting pokemon');
@@ -20,7 +23,7 @@ class PokemonService {
   }
 
   Future<List<Pokemon>> getPokemons([String? nextPokemonsUrl]) async {
-    final pokemonResponse = await _dio.get('');
+    final pokemonResponse = await dio.get('');
 
     if (pokemonResponse.statusCode != 200) {
       throw Exception('error getting pokemon');

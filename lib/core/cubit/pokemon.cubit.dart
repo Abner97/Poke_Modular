@@ -1,18 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poke_modular/models/pokemon.dart';
+import 'package:poke_modular/shared/models/pokemon.dart';
 import 'package:poke_modular/services/pokemon_service.dart';
 part 'pokemon.state.dart';
 part 'pokemon.cubit.freezed.dart';
 
 class PokemonCubit extends Cubit<PokemonState> {
-  final PokemonService _pokemonService = PokemonService();
+  final PokemonService pokemonService;
 
-  PokemonCubit() : super(const PokemonState.initial());
+  PokemonCubit({required this.pokemonService})
+      : super(const PokemonState.initial());
 
   void loadPokemons() {
     emit(const PokemonState.loading());
-    _pokemonService.getPokemons().then((pokemons) {
+    pokemonService.getPokemons().then((pokemons) {
       emit(PokemonState.loaded(pokemons));
     }).catchError((error) {
       emit(PokemonState.error(error.toString()));

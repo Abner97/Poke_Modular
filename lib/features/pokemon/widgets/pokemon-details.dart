@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poke_modular/cubit/pokemon.cubit.dart';
-import 'package:poke_modular/models/move.dart';
-import 'package:poke_modular/models/pokemon.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poke_modular/core/cubit/pokemon.cubit.dart';
+import 'package:poke_modular/shared/models/move.dart';
+import 'package:poke_modular/shared/models/pokemon.dart';
 import 'package:poke_modular/utils/capitalize.dart';
-import 'package:poke_modular/widgets/pokemon_image.dart';
+import 'package:poke_modular/shared/widgets/pokemon_image.dart';
 
 class PokemonDetails extends StatelessWidget {
   const PokemonDetails({super.key});
@@ -27,7 +28,8 @@ class PokemonDetails extends StatelessWidget {
               SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
-                  child: PokemonImage(imgUrl: pokemon.sprites.frontDefault)),
+                  child: PokemonImage(
+                      imgUrl: pokemon.sprites.frontDefault, hero: true)),
               Text(pokemon.name.capitalize(),
                   style: const TextStyle(
                       fontSize: 30, fontWeight: FontWeight.bold)),
@@ -52,22 +54,23 @@ class PokemonDetails extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: pokemon.moves.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          pokemon.moves[index].move.name.capitalize(),
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    );
-                  },
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      child: Text('Moves'),
+                      onPressed: () => Modular.to.pushNamed('/pokemon/moves'),
+                    ),
+                    ElevatedButton(
+                      child: Text('Sprites'),
+                      onPressed: () => Modular.to.pushNamed('/pokemon/sprites'),
+                    ),
+                  ],
                 ),
               ),
+              Expanded(child: Center(child: RouterOutlet()))
             ],
           ),
         );

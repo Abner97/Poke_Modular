@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poke_modular/models/ability.dart';
-import 'package:poke_modular/models/game_index.dart';
-import 'package:poke_modular/models/move.dart';
-import 'package:poke_modular/models/more_info.dart';
-import 'package:poke_modular/models/sprites.dart';
-import 'package:poke_modular/models/stat.dart';
-import 'package:poke_modular/models/type.dart';
+import 'package:poke_modular/shared/models/ability.dart';
+import 'package:poke_modular/shared/models/game_index.dart';
+import 'package:poke_modular/shared/models/move.dart';
+import 'package:poke_modular/shared/models/more_info.dart';
+import 'package:poke_modular/shared/models/sprites.dart';
+import 'package:poke_modular/shared/models/stat.dart';
+import 'package:poke_modular/shared/models/type.dart';
 part 'pokemon.freezed.dart';
 part 'pokemon.g.dart';
 
